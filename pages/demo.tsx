@@ -37,7 +37,6 @@ import OryzaTeam from '@/images/home/OryzaTeam.jpg'
 import Alarm from '@/images/home/alarm.png'
 import Parking from '@/images/home/parking.png'
 import { listMenu } from 'mocks'
-import PreviewVideo from "@/images/home/preview.mp4"
 import ReactPlayer from 'react-player'
 
 const useStyleTablet :any= makeStyles((theme?: any) => ({
@@ -146,11 +145,13 @@ export default function DemoPAge (props: IDemoPAgeProps) {
         >
           <Stack>
           <ReactPlayer
-              url={PreviewVideo}
-              width="640px"
-              height="360px"
+              url={"./preview.mp4"}
+              width="100%"
+              height="100%"
               playing={true}
               controls={false}
+              muted={true}
+              loop={true}
           />
           </Stack>
           <Stack

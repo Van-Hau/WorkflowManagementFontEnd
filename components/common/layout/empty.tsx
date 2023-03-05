@@ -5,9 +5,9 @@ import * as React from 'react';
 export function EmptyLayout({ children }: LayoutProps) {
     return (
         // }
-        <Stack minHeight="100vh">
+        <Stack minHeight="100vh"  >
             <Box component="main" flexGrow={1}>
-                <Container maxWidth={false}>{children}</Container>
+                <Container sx={{p:"0 !important"}} maxWidth={false}>{children}</Container>
             </Box>
         </Stack>
     );
