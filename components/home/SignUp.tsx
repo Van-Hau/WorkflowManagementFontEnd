@@ -18,7 +18,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { makeStyles } from "@mui/styles";
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme?: any) => ({
   form: {
     "&": {
       position: "relative",
@@ -74,12 +74,12 @@ const useStyle = makeStyles({
       cursor: "pointer",
     },
   },
-});
+}));
 
-function SignUp(props) {
+function SignUp(props:any) {
   const classes = useStyle();
   const [age, setAge] = useState("");
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setAge(e.target.value);
   };
   return (
@@ -92,7 +92,6 @@ function SignUp(props) {
         justifyContent: "center",
         zIndex: "1001",
         alignSelf: "center",
-        width: "100%",
         display: props.showSignUp?"flex" :"none"
       }}
     > 
@@ -109,14 +108,14 @@ function SignUp(props) {
         <Stack sx={{ flexDirection: "row" }}>
           <FormControl sx={{ m: 1, width: "25ch" ,flexGrow:'1'}} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-user">Email</InputLabel>
-            <InputBase id="outlined-adornment-user" label="Email" />
+            <InputBase id="outlined-adornment-user" placeholder="Email" />
             <FormHelperText sx={{ height: "20px" }}></FormHelperText>
           </FormControl>
           <FormControl sx={{ m: 1, width: "25ch" ,flexGrow:'1' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Họ và Tên
             </InputLabel>
-            <InputBase id="outlined-adornment-password" label="Họ và tên" />
+            <InputBase id="outlined-adornment-password" placeholder="Họ và tên" />
             <FormHelperText sx={{ height: "20px" }}></FormHelperText>
           </FormControl>
         </Stack>
@@ -125,14 +124,14 @@ function SignUp(props) {
             <InputLabel htmlFor="outlined-adornment-user">
               Số điện thoại
             </InputLabel>
-            <InputBase id="outlined-adornment-user" label="Số điện thoại" />
+            <InputBase id="outlined-adornment-user" placeholder="Số điện thoại" />
             <FormHelperText sx={{ height: "20px" }}></FormHelperText>
           </FormControl>
           <FormControl sx={{ m: 1, width: "25ch" ,flexGrow:'1' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-user">
               Tên Công Ty
             </InputLabel>
-            <InputBase id="outlined-adornment-user" label="Tên Công Ty" />
+            <InputBase id="outlined-adornment-user" placeholder="Tên Công Ty" />
             <FormHelperText sx={{ height: "20px",color:'rgb(255, 65, 108)' }}>gsg</FormHelperText>
           </FormControl>
         </Stack>

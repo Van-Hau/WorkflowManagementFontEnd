@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { makeStyles } from "@mui/styles";
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme?: any) => ({
   span:{
       position:'absolute',
       top:'30px',
@@ -58,8 +58,8 @@ const useStyle = makeStyles({
     }
   }
 
-})
-function Product(props) {
+}))
+function Product(props:any) {
   const classes=useStyle();
   return (
     <Stack className={props.lessDesktop?classes.tablet:classes.desktop} >
@@ -75,7 +75,7 @@ function Product(props) {
         </Stack>
         <Box sx={{position:'relative'}}>
             {props.isBest && <Box className={classes.span} component='span'></Box>}
-            <Box component='img' sx={{height:'100%',width:'100%',objectFit:'cover'}} src={props.image}/>
+            <Box component='img' sx={{height:'100%',width:'100%',objectFit:'cover'}} src={props.image.src}/>
         
         </Box>
     </Stack>

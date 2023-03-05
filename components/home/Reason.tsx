@@ -1,9 +1,8 @@
-import { Stack } from "@mui/system";
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography,Stack } from "@mui/material";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme?: any) => ({
   card: {
     "&": {
       position: "relative",
@@ -95,24 +94,34 @@ const useStyle = makeStyles({
       lineHeight: "1.5em",
     },
   },
-});
-function Reason(props) {
+}));
+interface ReasonProp{
+  topColor:string,
+  bottomColor:string,
+  title:string,
+  content:string,
+  Icon:any
+
+}
+function Reason({topColor,bottomColor,title,content,Icon}:ReasonProp) {
   const classes = useStyle();
   return (
     <Stack
       className={classes.card}
       sx={{
-        background: `linear-gradient(to bottom,${props.topColor},${props.bottomColor}) !important`,
+        background: `linear-gradient(to bottom,${topColor},${bottomColor}) !important`,
       }}
     >
       <Box className={classes.icon}>
-        <IconButton>{props.icon && props.icon}</IconButton>
+        {/* <IconButton>{props.icon && <props.icon/>}</IconButton> */}
+        {/* <props.icon/> */}
+        {/* <Icon/> */}
       </Box>
       <Stack className={classes.content}>
         <Typography variant="h2" gutterBottom>
-          {props.title}
+          {title}
         </Typography>
-        <Typography>{props.content}</Typography>
+        <Typography>{content}</Typography>
       </Stack>
       <Stack
         sx={{

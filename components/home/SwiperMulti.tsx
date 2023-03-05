@@ -12,7 +12,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme?: any) => ({
   slide:{
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -36,7 +36,7 @@ const useStyle = makeStyles({
     }
   }
 
-})
+}))
 function SwiperMulti() {
   const classes=useStyle();
   

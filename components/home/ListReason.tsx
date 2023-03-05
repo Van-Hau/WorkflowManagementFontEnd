@@ -18,7 +18,7 @@ function ListReason() {
         "Bộ giải pháp quản lý công việc, quy trình và nâng cao năng suất",
     },
     {
-      icon: <Diversity2Icon />,
+      icon: Diversity2Icon ,
       topColor: "#ffec61",
       bottomColor: "#f321d7",
       title: "HRM",
@@ -26,7 +26,7 @@ function ListReason() {
         "Bộ giải pháp quản trị nhân sự và phát triển con người toàn diện",
     },
     {
-      icon: <BusinessIcon />,
+      icon: BusinessIcon ,
       topColor: "#24ff72",
       bottomColor: "#9a4eff",
       title: "Business",
@@ -34,14 +34,14 @@ function ListReason() {
         "Bộ giải pháp quản lý bán hàng, quy trình bán hàng và nâng cao năng suất",
     },
     {
-      icon: <WarehouseIcon />,
+      icon: WarehouseIcon ,
       topColor: "#0575e6",
       bottomColor: "#00f260",
       title: "Inventory",
       content: "Bộ giải pháp quản lý kho bãi, nâng cao chất lượng.",
     },
     {
-      icon: <AttachMoneyIcon />,
+      icon: AttachMoneyIcon ,
       topColor: "#3C3B3F",
       bottomColor: "#605c3c",
       title: "Finance",
@@ -93,7 +93,7 @@ function ListReason() {
           return (
             <Reason
               key={i}
-              icon={item.icon}
+              Icon={item.icon}
               topColor={item.topColor}
               bottomColor={item.bottomColor}
               title={item.title}

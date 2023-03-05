@@ -1,4 +1,4 @@
-import { CloseRounded, Visibility, VisibilityOff } from "@mui/icons-material";
+import { CloseRounded, InputOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -15,7 +15,7 @@ import {
 import React, {useEffect, useRef, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { makeStyles } from "@mui/styles";
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme?: any) => ({
   form: {
     "&": {
       position: "relative",
@@ -63,7 +63,7 @@ const useStyle = makeStyles({
         cursor:'pointer'
       },
   },
-});
+}));
 function useOutsideAlerter(ref:any,setShowLogin:any) {
   useEffect(() => {
     /**
@@ -100,8 +100,6 @@ function Login(props:any) {
         justifyContent: "center",
         zIndex: "1001",
         alignSelf: "center",
-        width:'100%',
-
         display:props.showLogin?'flex':'none'
       }}
     >
@@ -126,7 +124,7 @@ function Login(props:any) {
                 </IconButton>
               </InputAdornment>
             }
-            label="Email"
+            placeholder="Email"
           />
         </FormControl>
         <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
@@ -147,7 +145,7 @@ function Login(props:any) {
                 </IconButton>
               </InputAdornment>
             }
-            label="Password"
+            placeholder="Password"
           />
         </FormControl>
         <Link underline="none">Quên mật khẩu ?</Link>

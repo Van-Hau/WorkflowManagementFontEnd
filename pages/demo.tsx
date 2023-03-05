@@ -17,8 +17,9 @@ import {
   ListItem,
   Typography,
   Stack,
+  CardMedia,
 } from "@mui/material";
-import  { Fragment, useState } from "react";
+import  { Fragment, useState,useEffect,useRef } from "react";
 import Man from "@/images/home/man.png";
 import Curve from "@/images/home/curve.png";
 import { useMediaQuery } from "react-responsive";
@@ -36,7 +37,10 @@ import OryzaTeam from '@/images/home/OryzaTeam.jpg'
 import Alarm from '@/images/home/alarm.png'
 import Parking from '@/images/home/parking.png'
 import { listMenu } from 'mocks'
-const useStyleTablet :any= makeStyles({
+import PreviewVideo from "@/images/home/preview.mp4"
+import ReactPlayer from 'react-player'
+
+const useStyleTablet :any= makeStyles((theme?: any) => ({
   section: {
     flexDirection:'column',
     paddingTop: "150px ",
@@ -48,7 +52,7 @@ const useStyleTablet :any= makeStyles({
       marginTop: "0",
     },
   },
-});
+}));
 const useStyleMobile = makeStyles({
   header: {
     padding: "20px 50px",
@@ -113,6 +117,7 @@ const listProduct=[
 export default function DemoPAge (props: IDemoPAgeProps) {
     const classesTablet = useStyleTablet();
     const classesMobile = useStyleMobile();
+    const [active,setActive]=useState("");
       const [showLogin, setShowLogin] = useState(false);
       const handleClickShowLogin = () => setShowLogin((show) => !show);
       const [showSignUp, setShowSignUp] = useState(false);
@@ -128,29 +133,41 @@ export default function DemoPAge (props: IDemoPAgeProps) {
       const isMobile = useMediaQuery({
         query: "(max-width: 786px)",
       });
+      //console.log(PreviewVideo)
       return (
+        
         <Stack
           sx={{
             fontFamily: "Roboto,sans-serif",
-            bgcolor: "#312747",
             position: "relative",
+            bgcolor:'#111',
             "*": { boxSizing: "border-box" },
           }}
         >
-          <Login showLogin={showLogin} setShowLogin={setShowLogin}/>
-          <SignUp showSignUp={showSignUp} setShowSignUp={setShowSignUp}/>
+          <Stack>
+          <ReactPlayer
+              url={PreviewVideo}
+              width="640px"
+              height="360px"
+              playing={true}
+              controls={false}
+          />
+          </Stack>
           <Stack
             className={isMobile ? classesMobile.header : ""}
             sx={{
-              position: "absolute",
+              position: "fixed",
               top: "0",
               left: "0",
               width: "100%",
+              height:'100px',
               p: "40px 50px",
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
               zIndex: "10",
+              // background:'rgba(0,0,0,0.5)',
+              borderBottom:'1px solid #fff'
             }}
           >
             <Link
@@ -166,18 +183,21 @@ export default function DemoPAge (props: IDemoPAgeProps) {
               Brand Name
             </Link>
             <Stack sx={{ position: "relative", justifySelf: "center" }}>
-              <List sx={{ position: "relative", display: "flex" }}>
+              <List sx={{ position: "relative", display: "flex" ,gap:'10px'}}>
                 {listMenu.map((item, i) => {
                   return (
                     <ListItem
                       key={i}
+                      className={active==item?"active":""}
+                      onClick={()=>setActive(item)}
                       component="a"
                       href="#"
                       sx={{
                         whiteSpace: "nowrap",
                         color: "#fff",
                         fontSize: "18px",
-                        "&:hover": { color: "#ff0083" },
+                        "&:hover": { color: "#111",background:'#fff' },
+                        "&.active":{ color: "#111",background:'#fff' }
                       }}
                     >
                       {item}
@@ -187,10 +207,10 @@ export default function DemoPAge (props: IDemoPAgeProps) {
               </List>
             </Stack>
             <Stack flexDirection="row" justifyContent="space-between">
-              <Button onClick={handleClickShowLogin} variant="outlined" color="secondary" sx={{ mr: "10px" }}>
+              <Button onClick={handleClickShowLogin} variant="outlined" sx={{ mr: "10px"}}>
                 Đăng Nhập
               </Button>
-              <Button onClick={handleClickShowSignUp} variant="contained" color="secondary">
+              <Button onClick={handleClickShowSignUp} variant="contained" >
                 {" "}
                 Đăng Ký
               </Button>
@@ -213,10 +233,7 @@ export default function DemoPAge (props: IDemoPAgeProps) {
               minHeight: "100vh",
             }}
           >
-            <img
-              src={Curve.src}
-              style={{ position: "absolute", bottom: "0", right: "0" }}
-            />
+           
             <Stack sx={{ position: "relative", maxWidth: "600px", zIndex: "1000" }}>
               <Typography
                 variant="h3"
@@ -276,18 +293,7 @@ export default function DemoPAge (props: IDemoPAgeProps) {
                 </Link>
               </Stack>
             </Stack>
-            <Box>
-              <img
-                style={{
-                  position: "relative",
-                  maxWidth: "500px",
-                  width: "100%",
-                  marginTop: "100px",
-                  zIndex: "2",
-                }}
-                src={Man.src}
-              />
-            </Box>
+            
           </Stack>
           <ListReason />
           <SwiperMulti/>
