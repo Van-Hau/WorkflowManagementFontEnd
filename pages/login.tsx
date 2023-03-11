@@ -1,3 +1,4 @@
+import SignUp_In from '@/components/home/SignUp_In';
 import { useAuth } from '@/hooks/auth-hook';
 import { useRouter } from 'next/router';
 import * as React from 'react';
@@ -23,14 +24,6 @@ export default function LoginPage (props: ILoginPageProps) {
        
     }, []);
   return (
-    <div>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-
-        <button onClick={handleLogin}>Login</button>
-        <button onClick={()=> router.push("/signup")}>signup</button>
-      
-    </div>
+    <SignUp_In/>
   );
 }

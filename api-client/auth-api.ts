@@ -1,4 +1,4 @@
-import { LoginPayload } from '@/models/index';
+import { LoginPayload, RegisterPayload } from '@/models/index';
 import axiosClient from './axios-client';
 
 export const authApi = {
@@ -13,4 +13,7 @@ export const authApi = {
     getProfile() {
         return axiosClient.get('/profile');
     },
+    signUp(payload:RegisterPayload){
+        return axiosClient.post('/signup',payload);
+    }
 };
