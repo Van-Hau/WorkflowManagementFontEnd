@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Box, Button, IconButton, Typography,Stack } from "@mui/material";
 
-const useStyle = makeStyles((theme?: any) => ({
+const classes = {
   card: {
     "&": {
       position: "relative",
@@ -38,7 +38,7 @@ const useStyle = makeStyles((theme?: any) => ({
       position: "relative",
       width: "100px",
       height: "100px",
-      background: "#312747",
+      background: "#111",
       borderBottomLeftRadius: "100px",
       borderBottomRightRadius: "100px",
       boxShadow: "0 10px 0 rgba(0,0,0,0.1), inset 0 -8px 0 #fff",
@@ -55,7 +55,7 @@ const useStyle = makeStyles((theme?: any) => ({
       height: "30px",
       background: "transparent",
       borderTopRightRadius: "50px",
-      boxShadow: "15px -15px 0 15px #312747",
+      boxShadow: "15px -15px 0 15px #111",
     },
     "&:after": {
       content: "''",
@@ -66,7 +66,7 @@ const useStyle = makeStyles((theme?: any) => ({
       height: "50px",
       background: "transparent",
       borderTopLeftRadius: "30px",
-      boxShadow: "-15px -15px 0 15px #312747",
+      boxShadow: "-15px -15px 0 15px #111",
     },
     "& svg": {
       color: "#fff",
@@ -94,7 +94,7 @@ const useStyle = makeStyles((theme?: any) => ({
       lineHeight: "1.5em",
     },
   },
-}));
+} as const;
 interface ReasonProp{
   topColor:string,
   bottomColor:string,
@@ -104,20 +104,19 @@ interface ReasonProp{
 
 }
 function Reason({topColor,bottomColor,title,content,Icon}:ReasonProp) {
-  const classes = useStyle();
+
   return (
     <Stack
-      className={classes.card}
-      sx={{
+      sx={[{
         background: `linear-gradient(to bottom,${topColor},${bottomColor}) !important`,
-      }}
+      },
+      classes.card
+    ]}
     >
-      <Box className={classes.icon}>
-        {/* <IconButton>{props.icon && <props.icon/>}</IconButton> */}
-        {/* <props.icon/> */}
-        {/* <Icon/> */}
+      <Box sx={classes.icon}>
+        <IconButton children={Icon}></IconButton>
       </Box>
-      <Stack className={classes.content}>
+      <Stack sx={classes.content}>
         <Typography variant="h2" gutterBottom>
           {title}
         </Typography>
@@ -130,7 +129,7 @@ function Reason({topColor,bottomColor,title,content,Icon}:ReasonProp) {
           paddingBottom: "50px",
         }}
       >
-        <Button variant="contained">Xem Thêm</Button>
+        <Button sx={{background:'#000'}} variant="contained">Xem Thêm</Button>
       </Stack>
     </Stack>
   );

@@ -1,11 +1,11 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { makeStyles } from "@mui/styles";
-const useStyle = makeStyles((theme?: any) => ({
+const classes = {
   span:{
       position:'absolute',
       top:'30px',
-      left:'150px',
+      left:'110px',
       width:'100px',
       height:'100px',
       display:'flex',
@@ -45,8 +45,10 @@ const useStyle = makeStyles((theme?: any) => ({
   ,
   tablet:{
       color:'#fff',
+      flexDirection:'column',
       "&>div":{
-          padding:'40px 160px'
+          padding:'40px 120px',
+          width:'100%'
       }
   },
   desktop:{
@@ -54,15 +56,15 @@ const useStyle = makeStyles((theme?: any) => ({
     color:'#fff',
     "&>div":{
         width:'50%',
-        padding:'40px 160px'
+        padding:'40px 120px'
     }
   }
 
-}))
+}as const;
 function Product(props:any) {
-  const classes=useStyle();
+
   return (
-    <Stack className={props.lessDesktop?classes.tablet:classes.desktop} >
+    <Stack sx={props.lessDesktop?classes.tablet:classes.desktop} >
         <Stack >
             <Typography variant='h4' sx={{fontSize:'40px',lineHeight:'48px',fontWeight:'700'}}>
                 {props.title}
@@ -74,7 +76,7 @@ function Product(props:any) {
             <Button variant='contained' sx={{mt:'16px'}}>Xem Thêm</Button>
         </Stack>
         <Box sx={{position:'relative'}}>
-            {props.isBest && <Box className={classes.span} component='span'></Box>}
+            {props.isBest && <Box sx={classes.span} component='span'></Box>}
             <Box component='img' sx={{height:'100%',width:'100%',objectFit:'cover'}} src={props.image.src}/>
         
         </Box>

@@ -4,11 +4,15 @@ export interface LoginPayload {
 }
 
 export interface RegisterPayload {
-    Phone: string;
-    Password: string;
-    Email?: string;
-    LinkFb?: string;
-    Name: string;
+    company:string;
+    district:string;
+    email:string;
+    password:string;
+    positionWord:string;
+    scale:number;
+    username:string;
+    phone:string;
+ 
 }
 
 export interface ChangePassByAdmin {
