@@ -7,23 +7,20 @@ import { useEffect } from 'react';
 import { Auth } from '../auth';
 import Footer from '../footer';
 import Header from '../header';
+import LefMenuHome from '../left-menu/left-menu-home';
 
 export interface MainLayoutProps {}
 
 export function MainLayout({ children }: LayoutProps) {
     return (
-        <Auth>
-            <Stack minHeight="100vh" position="relative">
-                <Header />
+        // <Auth>
+        <Stack minHeight="100vh" position="relative">
+            <LefMenuHome />
 
-                <Box component="main" flexGrow={1} mt={{ xs: 2, md: 0 }}>
-                    <Container maxWidth={false}>{children}</Container>
-                </Box>
-                <Footer />
-                {/* <Stack display={{sm: 'flex', md: 'none'}} position='fixed' sx={{bottom: 0, right: 0}}>
-        
-      </Stack> */}
-            </Stack>
-        </Auth>
+            <Box component="main" flexGrow={1} mt={{ xs: 2, md: 0 }}>
+                <Container maxWidth={false}>{children}</Container>
+            </Box>
+        </Stack>
+        // </Auth>
     );
 }
