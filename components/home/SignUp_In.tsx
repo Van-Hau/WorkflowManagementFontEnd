@@ -17,7 +17,6 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { makeStyles } from '@mui/styles';
 import Tech from '@/images/home/tech.jpg';
 import SignInImage from '@/images/home/signin.svg';
 import SignUpImage from '@/images/home/signup.svg';
@@ -79,14 +78,15 @@ function SignUp_In() {
         setSignUp2('');
     };
     const handleRegister = async () => {
-        //         "company": "string",
-        //   "district": "string",
-        //   "email": "string",
-        //   "fullName": "string",
-        //   "password": "string",
-        //   "phone": "string",
-        //   "positionWord": "string",
-        //   "scale": 0
+        // {
+        //     "company": "quang linh",
+        //     "district": "nghe an",
+        //     "email": "linh@gmail.com",
+        //     "fullName": "Hoang quang linh",
+        //     "password": "12345678",
+        //     "phone": "0355536733",
+        //     "positionWork": "siep"
+        //   }
         const payload: any = {
             company: company,
             district: district,
@@ -134,7 +134,11 @@ function SignUp_In() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     },
-                    isMobile ? classesSignPage.mobile : isTablet ? classesSignPage.tablet : {},
+                    isMobile
+                        ? classesSignPage.mobile
+                        : isTablet
+                        ? classesSignPage.tablet
+                        : classesSignPage.tablet,
                 ]}
             >
                 <Stack className={`container ${singUp} ${singUp2}`} sx={classesSignPage.container}>
@@ -340,7 +344,8 @@ function SignUp_In() {
                             <Box component="img" src={SignUpImage.src} />
                         </Stack>
                     </Stack>
-                </Stack>
+                </Stack>{' '}
+                */
             </Stack>
         </StylesProvider>
     );
