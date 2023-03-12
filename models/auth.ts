@@ -1,18 +1,17 @@
 export interface LoginPayload {
-    username: string;
+    email: string;
     password: string;
 }
 
 export interface RegisterPayload {
-    company:string;
-    district:string;
-    email:string;
-    password:string;
-    positionWord:string;
-    scale:number;
-    username:string;
-    phone:string;
- 
+    company: string;
+    district: string;
+    email: string;
+    password: string;
+    positionWord: string;
+    scale: number;
+    username: string;
+    phone: string;
 }
 
 export interface ChangePassByAdmin {
