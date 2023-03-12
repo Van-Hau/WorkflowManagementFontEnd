@@ -24,7 +24,7 @@ import { Fragment, useState, useEffect, useRef } from 'react';
 import Man from '@/images/home/man.png';
 import Curve from '@/images/home/curve.png';
 import { useMediaQuery } from 'react-responsive';
-import { makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -42,39 +42,39 @@ import { StylesProvider, createGenerateClassName } from '@mui/styles';
 import { style } from '@mui/system';
 import Footer from '@/components/home/Footer';
 import { useRouter } from 'next/router';
-const classes={
-    sticky:{
-    "&.sticky":{
-        padding:'10px 50px',
-        background:'#fff',
-        height:'auto'
+const classes = {
+    sticky: {
+        '&.sticky': {
+            padding: '10px 50px',
+            background: '#fff',
+            height: 'auto',
+        },
+        '&.sticky a': {
+            color: '#000',
+        },
+        '&.sticky button:first-of-type': {
+            border: '1px solid rgba(0,0,0,0.5)',
+            color: '#000',
+        },
+        '&.sticky button:last-of-type': {
+            color: '#fff',
+            background: '#000',
+        },
     },
-    "&.sticky a":{
-        color:'#000'
-    },
-    "&.sticky button:first-of-type":{
-        border:'1px solid rgba(0,0,0,0.5)',
-        color: '#000'
-    },
-    "&.sticky button:last-of-type":{
-        color:'#fff',
-        background:'#000'
-    },
-}
 } as const;
-const classesTablet= {
+const classesTablet = {
     section: {
-        "&::before":{width:'100%'},
+        '&::before': { width: '100%' },
         '&>div:last-child img': {
             marginTop: '0',
         },
-        '&>div:first-of-type':{
-            maxWidth:'100%'
+        '&>div:first-of-type': {
+            maxWidth: '100%',
         },
     },
-}as const;
-  
-const classesMobile={
+} as const;
+
+const classesMobile = {
     header: {
         padding: '20px 50px',
     },
@@ -82,9 +82,9 @@ const classesMobile={
         flexDirection: 'column',
         padding: '150px 50px 100px',
         height: 'auto',
-        "&::before":{width:'100%'},
-        '&>div:first-of-type':{
-            maxWidth:'100%'
+        '&::before': { width: '100%' },
+        '&>div:first-of-type': {
+            maxWidth: '100%',
         },
         '&>div:first-of-type h2': {
             fontSize: '40px',
@@ -103,10 +103,10 @@ const classesMobile={
             borderRadius: '40px',
         },
     },
-}as const;
+} as const;
 const generateClassName = createGenerateClassName({
     productionPrefix: 'c',
-  });
+});
 export interface IDemoPAgeProps {}
 const listProduct = [
     {
@@ -142,14 +142,13 @@ const listProduct = [
 export default function DemoPAge(props: IDemoPAgeProps) {
     const [active, setActive] = useState('');
     const [showLogin, setShowLogin] = useState(false);
-    const router=useRouter();
+    const router = useRouter();
     const handleClickShowLogin = () => {
-        console.log("fdf")
-        router.push("/login")
-    }
+        router.push('/login');
+    };
     const [showSignUp, setShowSignUp] = useState(false);
     const handleClickShowSignUp = () => {
-        
+        router.push('/login');
     };
     const isDesktop = useMediaQuery({
         query: '(min-width: 1224px)',
@@ -162,287 +161,303 @@ export default function DemoPAge(props: IDemoPAgeProps) {
         query: '(max-width: 786px)',
     });
     useEffect(() => {
-        window.addEventListener("scroll",()=>{    
-            var header=document.querySelector(".header");
-            header?.classList.toggle("sticky",window.scrollY>0)
-        })
-        
-      }, []);
-    
+        window.addEventListener('scroll', () => {
+            var header = document.querySelector('.header');
+            header?.classList.toggle('sticky', window.scrollY > 0);
+        });
+    }, []);
+
     return (
-      <StylesProvider generateClassName={generateClassName} injectFirst>
-        <Stack
-            sx={{
-                fontFamily: 'Roboto,sans-serif',
-                position: 'relative',
-                bgcolor: '#111',
-                '& *': { boxSizing: 'border-box' },
-                "& .MuiTypography-root":{
-                    fontFamily: 'Roboto,sans-serif',
-                }
-            }}
-        >
+        <StylesProvider generateClassName={generateClassName} injectFirst>
             <Stack
                 sx={{
-                    minHeight:'100vh'
-                }}
-            >   
-                <Stack
-                  sx={{
-                    position: 'absolute',
-                    top: '0',
-                    left: '0',
-                    width: '100%',
-                  }}
-                >
-                    {<CardMedia 
-                    component="video" src={'./preview.mp4'} autoPlay muted loop></CardMedia> }
-                </Stack>
-                <Stack
-                sx={[           
-                    {
+                    fontFamily: 'Roboto,sans-serif',
                     position: 'relative',
-                    justifyContent: 'flex-start',
-                    alignItems: 'center',
-                    padding: '0 100px',
-                    flexDirection: 'row',
-                    minHeight: '100vh',
-                    "&:before":{
-                      content:"''",
-                      position:'absolute',
-                      top:'0',
-                      left:'0',
-                      width:'50%',
-                      height:'100%',
-                      backdropFilter:'blur(8px)',
-                      boxShadow:'10px 0 15px rgba(0,0,0,0.05)'
+                    bgcolor: '#111',
+                    '& *': { boxSizing: 'border-box' },
+                    '& .MuiTypography-root': {
+                        fontFamily: 'Roboto,sans-serif',
                     },
-                    },
-                    isMobile?classesMobile.section : isTablet ? classesTablet.section:{}
-
-                ]}
-                >
-                  <Stack
-                      sx={{
-                          position: 'relative',
-                          maxWidth: '40%',
-                          zIndex: '1000',
-                      }}
-                  >   
-                      <Typography
-                          variant="h2"
-                          gutterBottom
-                          sx={{
-                              fontSize: '40px',
-                              color: '#fff',
-                              textTransform: 'uppercase',
-                              fontWeight: 'bold',
-                          }}
-                      >
-                          Nền tảng quản trị doanh nghiệp toàn diện
-                      </Typography>
-                      <Typography
-                          gutterBottom
-                          sx={{
-                              fontSize: '18px',
-                              color: '#fff',
-                              m: '20px 0',
-                          }}
-                      >
-                          Quản lý tập trung tất cả các dữ liệu và thông tin liên quan đến hoạt động
-                          của doanh nghiệp.
-                      </Typography>
-                      <Stack flexDirection="row" justifyContent="flex-start" gap={2}>
-                          <Link
-                              sx={{
-                                  width: 'fit-content',
-                                  mt: '10px',
-                                  display: 'inline-block',
-                                  background: '#ff0083',
-                                  color: '#fff',
-                                  fontSize: '20px',
-                                  letterSpacing: '2px',
-                                  p: '10px 25px',
-                                  borderRadius: '40px',
-                                  textAlign:'center'
-                              }}
-                              variant="body2"
-                              href="#"
-                              underline="none"
-                          >
-                              Đăng Ký Ngay
-                          </Link>
-                          <Link
-                              sx={{
-                                  width: 'fit-content',
-                                  mt: '10px',
-                                  display: 'inline-block',
-                                  background: '#fff',
-                                  color: '#ff0083',
-                                  fontSize: '20px',
-                                  letterSpacing: '2px',
-                                  p: '10px 25px',
-                                  borderRadius: '40px',
-                                  textAlign:'center'
-                              }}
-                              variant="body2"
-                              href="#"
-                              underline="none"
-                          >
-                              Liên Hệ Tư Vấn
-                          </Link>
-                      </Stack>
-                  </Stack>
-                </Stack>
-            </Stack>
-            <Stack
-                className='header'
-                sx={[{
-                    position: 'fixed',
-                    top: '0',
-                    left: '0',
-                    width: '100%',
-                    height: '100px',
-                    p: '40px 50px',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    zIndex: '1001',
-                    transition:'0.6s'
-                    
-                    // background:'rgba(0,0,0,0.5)',
-                },
-                (isMobile && classesMobile.header)
-               ,classes.sticky
-            ]}
+                }}
             >
-                <Link
-                    href="#"
-                    underline="none"
+                <Stack
                     sx={{
-                        position: 'relative',
-                        color: '#fff',
-                        fontSize: '28px',
-                        fontWeight: '500',
+                        minHeight: '100vh',
                     }}
                 >
-                    HOLO
-                </Link>
-                {/* menu */}
-                <Stack sx={{ position: 'relative', justifySelf: 'center' }}>
-                    <List sx={{ position: 'relative', display: 'flex', gap: '10px' }}>
-                        {listMenu.map((item, i) => {
-                            return (
-                                <ListItem
-                                    key={i}
-                                    className={active == item ? 'active' : ''}
-                                    onClick={() => setActive(item)}
-                                    component="a"
-                                    href="#"
-                                    sx={{
-                                        whiteSpace: 'nowrap',
-                                        color: '#fff',
-                                        fontSize: '18px',
-                                        minWidth:'120px',
-                                        justifyContent:'center',
-                                        padding:'8px 2%',
-                                        transition:'0.6s',
-                                        '&:hover': { color: '#111', background: '#fff' },
-                                        '&.active': { color: '#111', background: '#fff' },
-                                    }}
-                                >
-                                    {item}
-                                </ListItem>
-                            );
-                        })}
-                    </List>
-                </Stack>
-                <Stack flexDirection="row" justifyContent="space-between">
-                    <Button onClick={handleClickShowLogin} variant="outlined" 
-                    sx={{ mr: '10px',
-                    border:'1px solid rgba(255,255,255,0.5)',
-                    padding:'5px 10px',
-                    borderRadius:'5px',
-                    color: '#fff'
-                    
-                    }}>
-                        Đăng Nhập
-                    </Button>
-                    <Button onClick={handleClickShowSignUp} variant="contained"
-                    sx={{ mr: '10px',
-                    background:'#fff',
-                    padding:'5px 10px',
-                    border:'8px',
-                    color: '#000',
-                    "&:hover":{
-                        background:'#717171',
-                        color:'#fff'
-                    }
-            
-                    }}>
-                        {' '}
-                        Đăng Ký
-                    </Button>
-                </Stack>
-            </Stack>
-           
-            <ListReason />
-            <SwiperMulti />
-            <Stack>
-                <Typography
-                    variant="h2"
-                    sx={{
-                        fontSize: '2em',
-                        textAlign: 'center',
-                        fontWeight: '500',
-                        color: '#fff',
-                        paddingTop: '30px',
-                        m: '0 20px',
-                    }}
-                >
-                    Sản Phẩm
-                    <Divider
+                    <Stack
                         sx={{
-                            '&::before,&::after': {
-                                borderTop: 'thin solid rgba(255, 255, 255, 0.7)',
-                            },
+                            position: 'absolute',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
                         }}
                     >
-                        <Chip label="MORE" color="primary" />
-                    </Divider>
-                </Typography>
-                {listProduct.map((item, i) => {
-                    if (i != listProduct.length - 1)
-                        return (
-                            <Fragment key={i}>
-                                <Product
-                                    lessDesktop={isTablet}
-                                    title={item.title}
-                                    isBest={item.best}
-                                    content={item.content}
-                                    image={item.image}
-                                />
-                                <Divider
+                        {
+                            <CardMedia
+                                component="video"
+                                src={'./preview.mp4'}
+                                autoPlay
+                                muted
+                                loop
+                            ></CardMedia>
+                        }
+                    </Stack>
+                    <Stack
+                        sx={[
+                            {
+                                position: 'relative',
+                                justifyContent: 'flex-start',
+                                alignItems: 'center',
+                                padding: '0 100px',
+                                flexDirection: 'row',
+                                minHeight: '100vh',
+                                '&:before': {
+                                    content: "''",
+                                    position: 'absolute',
+                                    top: '0',
+                                    left: '0',
+                                    width: '50%',
+                                    height: '100%',
+                                    backdropFilter: 'blur(8px)',
+                                    boxShadow: '10px 0 15px rgba(0,0,0,0.05)',
+                                },
+                            },
+                            isMobile
+                                ? classesMobile.section
+                                : isTablet
+                                ? classesTablet.section
+                                : {},
+                        ]}
+                    >
+                        <Stack
+                            sx={{
+                                position: 'relative',
+                                maxWidth: '40%',
+                                zIndex: '1000',
+                            }}
+                        >
+                            <Typography
+                                variant="h2"
+                                gutterBottom
+                                sx={{
+                                    fontSize: '40px',
+                                    color: '#fff',
+                                    textTransform: 'uppercase',
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                Nền tảng quản trị doanh nghiệp toàn diện
+                            </Typography>
+                            <Typography
+                                gutterBottom
+                                sx={{
+                                    fontSize: '18px',
+                                    color: '#fff',
+                                    m: '20px 0',
+                                }}
+                            >
+                                Quản lý tập trung tất cả các dữ liệu và thông tin liên quan đến hoạt
+                                động của doanh nghiệp.
+                            </Typography>
+                            <Stack flexDirection="row" justifyContent="flex-start" gap={2}>
+                                <Link
                                     sx={{
-                                        border: 'thin solid rgba(255, 255, 255, 0.2)',
+                                        width: 'fit-content',
+                                        mt: '10px',
+                                        display: 'inline-block',
+                                        background: '#ff0083',
+                                        color: '#fff',
+                                        fontSize: '20px',
+                                        letterSpacing: '2px',
+                                        p: '10px 25px',
+                                        borderRadius: '40px',
+                                        textAlign: 'center',
                                     }}
-                                ></Divider>
-                            </Fragment>
+                                    variant="body2"
+                                    href="#"
+                                    underline="none"
+                                >
+                                    Đăng Ký Ngay
+                                </Link>
+                                <Link
+                                    sx={{
+                                        width: 'fit-content',
+                                        mt: '10px',
+                                        display: 'inline-block',
+                                        background: '#fff',
+                                        color: '#ff0083',
+                                        fontSize: '20px',
+                                        letterSpacing: '2px',
+                                        p: '10px 25px',
+                                        borderRadius: '40px',
+                                        textAlign: 'center',
+                                    }}
+                                    variant="body2"
+                                    href="#"
+                                    underline="none"
+                                >
+                                    Liên Hệ Tư Vấn
+                                </Link>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Stack>
+                <Stack
+                    className="header"
+                    sx={[
+                        {
+                            position: 'fixed',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '100px',
+                            p: '40px 50px',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            zIndex: '1001',
+                            transition: '0.6s',
+
+                            // background:'rgba(0,0,0,0.5)',
+                        },
+                        isMobile && classesMobile.header,
+                        classes.sticky,
+                    ]}
+                >
+                    <Link
+                        href="#"
+                        underline="none"
+                        sx={{
+                            position: 'relative',
+                            color: '#fff',
+                            fontSize: '28px',
+                            fontWeight: '500',
+                        }}
+                    >
+                        HOLO
+                    </Link>
+                    {/* menu */}
+                    <Stack sx={{ position: 'relative', justifySelf: 'center' }}>
+                        <List sx={{ position: 'relative', display: 'flex', gap: '10px' }}>
+                            {listMenu.map((item, i) => {
+                                return (
+                                    <ListItem
+                                        key={i}
+                                        className={active == item ? 'active' : ''}
+                                        onClick={() => setActive(item)}
+                                        component="a"
+                                        href="#"
+                                        sx={{
+                                            whiteSpace: 'nowrap',
+                                            color: '#fff',
+                                            fontSize: '18px',
+                                            minWidth: '120px',
+                                            justifyContent: 'center',
+                                            padding: '8px 2%',
+                                            transition: '0.6s',
+                                            '&:hover': { color: '#111', background: '#fff' },
+                                            '&.active': { color: '#111', background: '#fff' },
+                                        }}
+                                    >
+                                        {item}
+                                    </ListItem>
+                                );
+                            })}
+                        </List>
+                    </Stack>
+                    <Stack flexDirection="row" justifyContent="space-between">
+                        <Button
+                            onClick={handleClickShowLogin}
+                            variant="outlined"
+                            sx={{
+                                mr: '10px',
+                                border: '1px solid rgba(255,255,255,0.5)',
+                                padding: '5px 10px',
+                                borderRadius: '5px',
+                                color: '#fff',
+                            }}
+                        >
+                            Đăng Nhập
+                        </Button>
+                        <Button
+                            onClick={handleClickShowSignUp}
+                            variant="contained"
+                            sx={{
+                                mr: '10px',
+                                background: '#fff',
+                                padding: '5px 10px',
+                                border: '8px',
+                                color: '#000',
+                                '&:hover': {
+                                    background: '#717171',
+                                    color: '#fff',
+                                },
+                            }}
+                        >
+                            {' '}
+                            Đăng Ký
+                        </Button>
+                    </Stack>
+                </Stack>
+
+                <ListReason />
+                <SwiperMulti />
+                <Stack>
+                    <Typography
+                        variant="h2"
+                        sx={{
+                            fontSize: '2em',
+                            textAlign: 'center',
+                            fontWeight: '500',
+                            color: '#fff',
+                            paddingTop: '30px',
+                            m: '0 20px',
+                        }}
+                    >
+                        Sản Phẩm
+                        <Divider
+                            sx={{
+                                '&::before,&::after': {
+                                    borderTop: 'thin solid rgba(255, 255, 255, 0.7)',
+                                },
+                            }}
+                        >
+                            <Chip label="MORE" color="primary" />
+                        </Divider>
+                    </Typography>
+                    {listProduct.map((item, i) => {
+                        if (i != listProduct.length - 1)
+                            return (
+                                <Fragment key={i}>
+                                    <Product
+                                        lessDesktop={isTablet}
+                                        title={item.title}
+                                        isBest={item.best}
+                                        content={item.content}
+                                        image={item.image}
+                                    />
+                                    <Divider
+                                        sx={{
+                                            border: 'thin solid rgba(255, 255, 255, 0.2)',
+                                        }}
+                                    ></Divider>
+                                </Fragment>
+                            );
+                        return (
+                            <Product
+                                key={i}
+                                lessDesktop={isTablet}
+                                title={item.title}
+                                isBest={item.best}
+                                content={item.content}
+                                image={item.image}
+                            />
                         );
-                    return (
-                        <Product
-                            key={i}
-                            lessDesktop={isTablet}
-                            title={item.title}
-                            isBest={item.best}
-                            content={item.content}
-                            image={item.image}
-                        />
-                    );
-                })}
+                    })}
+                </Stack>
+                <Footer />
             </Stack>
-            <Footer/>
-        </Stack>
-      </StylesProvider>
+        </StylesProvider>
     );
 }
