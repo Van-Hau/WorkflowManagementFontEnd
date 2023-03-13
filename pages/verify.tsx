@@ -2,7 +2,7 @@ import { Button, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import EmailIcon from '@mui/icons-material/Email';
 import React from 'react';
-
+import Success from '@/images/verify/Success.jpg';
 export interface IVerifyPageProps {}
 
 export default function VerifyPage(props: IVerifyPageProps) {
@@ -58,7 +58,7 @@ export default function VerifyPage(props: IVerifyPageProps) {
                             objectFit: 'cover',
                         }}
                         component="img"
-                        src={Success}
+                        src={Success.src}
                     />
                     <Stack
                         sx={{
@@ -67,10 +67,13 @@ export default function VerifyPage(props: IVerifyPageProps) {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography variant="h2" sx={{ fontSize: '40px', marginBottom: '30px' }}>
+                        <Typography
+                            variant="h2"
+                            sx={{ fontSize: '40px', marginBottom: '30px', textAlign: 'center' }}
+                        >
                             Bạn đã đăng ký thành công !
                         </Typography>
-                        <Stack sx={{ padding: '18px 60px' }}>
+                        <Stack sx={{ padding: '18px 60px', alignItems: 'center' }}>
                             <Typography fontSize="18px">
                                 Vui lòng xác nhận tài khoản thông qua email để đăng nhập hệ thống
                             </Typography>

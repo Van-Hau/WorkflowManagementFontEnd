@@ -57,13 +57,7 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
             <OutlinedInput
                 onChange={(e: any) => setNameSignIn(e.target.value)}
                 value={nameSignIn}
-                endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton edge="end">
-                            <PersonIcon sx={{ color: '#fff' }} />
-                        </IconButton>
-                    </InputAdornment>
-                }
+                endAdornment={<PersonIcon sx={{ color: '#fff' }} />}
                 placeholder="Email"
             />
             <OutlinedInput
@@ -71,17 +65,11 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
                 value={passwordSignIn}
                 endAdornment={
                     <InputAdornment position="end">
-                        <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            edge="end"
-                        >
-                            {showPassword ? (
-                                <VisibilityOff sx={{ color: '#fff' }} />
-                            ) : (
-                                <Visibility sx={{ color: '#fff' }} />
-                            )}
-                        </IconButton>
+                        {showPassword ? (
+                            <VisibilityOff sx={{ color: '#fff' }} />
+                        ) : (
+                            <Visibility sx={{ color: '#fff' }} />
+                        )}
                     </InputAdornment>
                 }
                 placeholder="Password"

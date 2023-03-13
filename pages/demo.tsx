@@ -30,8 +30,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import ListReason from '@/components/home/ListReason';
-import Login from '@/components/home/Login';
-import SignUp from '@/components/home/SignUp';
+
 import SwiperMulti from '@/components/home/SwiperMulti';
 import Product from '@/components/home/Product';
 import OryzaTeam from '@/images/home/OryzaTeam.jpg';
@@ -64,7 +63,7 @@ const classes = {
 } as const;
 const classesTablet = {
     section: {
-        '&::before': { width: '100%' },
+        '&': { maxWidth: '100%' },
         '&>div:last-child img': {
             marginTop: '0',
         },
@@ -82,7 +81,7 @@ const classesMobile = {
         flexDirection: 'column',
         padding: '150px 50px 100px',
         height: 'auto',
-        '&::before': { width: '100%' },
+        '&': { maxWidth: '100%' },
         '&>div:first-of-type': {
             maxWidth: '100%',
         },
@@ -180,14 +179,10 @@ export default function DemoPAge(props: IDemoPAgeProps) {
                     },
                 }}
             >
-                <Stack
-                    sx={{
-                        minHeight: '100vh',
-                    }}
-                >
+                <Stack sx={{ position: 'relative' }}>
                     <Stack
                         sx={{
-                            position: 'absolute',
+                            // position: 'absolute',
                             top: '0',
                             left: '0',
                             width: '100%',
@@ -206,18 +201,20 @@ export default function DemoPAge(props: IDemoPAgeProps) {
                     <Stack
                         sx={[
                             {
-                                position: 'relative',
+                                position: 'absolute',
                                 justifyContent: 'flex-start',
                                 alignItems: 'center',
                                 padding: '0 100px',
+                                maxWidth: '60%',
+
                                 flexDirection: 'row',
-                                minHeight: '100vh',
+                                minHeight: '100%',
                                 '&:before': {
                                     content: "''",
                                     position: 'absolute',
                                     top: '0',
                                     left: '0',
-                                    width: '50%',
+                                    width: '100%',
                                     height: '100%',
                                     backdropFilter: 'blur(8px)',
                                     boxShadow: '10px 0 15px rgba(0,0,0,0.05)',
@@ -233,7 +230,7 @@ export default function DemoPAge(props: IDemoPAgeProps) {
                         <Stack
                             sx={{
                                 position: 'relative',
-                                maxWidth: '40%',
+
                                 zIndex: '1000',
                             }}
                         >
@@ -278,7 +275,7 @@ export default function DemoPAge(props: IDemoPAgeProps) {
                                     href="#"
                                     underline="none"
                                 >
-                                    Đăng Ký Ngay
+                                    Đăng Ký
                                 </Link>
                                 <Link
                                     sx={{
@@ -297,7 +294,7 @@ export default function DemoPAge(props: IDemoPAgeProps) {
                                     href="#"
                                     underline="none"
                                 >
-                                    Liên Hệ Tư Vấn
+                                    Liên Hệ
                                 </Link>
                             </Stack>
                         </Stack>
