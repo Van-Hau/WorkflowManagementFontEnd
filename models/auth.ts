@@ -12,8 +12,12 @@ export interface RegisterPayload {
     scale: number;
     username: string;
     phone: string;
+    frontendUrl: string;
 }
-
+export interface VerifyPayload {
+    id: number;
+    verifyCode: string;
+}
 export interface ChangePassByAdmin {
     UserId: string;
     NewPassword: string;

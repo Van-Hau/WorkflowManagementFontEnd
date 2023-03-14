@@ -25,7 +25,11 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const [type, setType] = useState('password');
+    const handleClickShowPassword = () => {
+        setShowPassword((show) => !show);
+        setType(showPassword ? 'password' : 'text');
+    };
 
     const handleSingUp2 = () => {
         setSignUp2('sign-up-mode2');
@@ -64,16 +68,32 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
                 onChange={(e: any) => setPasswordSignIn(e.target.value)}
                 value={passwordSignIn}
                 endAdornment={
-                    <InputAdornment position="end">
-                        {showPassword ? (
-                            <VisibilityOff sx={{ color: '#fff' }} />
-                        ) : (
-                            <Visibility sx={{ color: '#fff' }} />
-                        )}
-                    </InputAdornment>
+                    showPassword ? (
+                        <VisibilityOff
+                            onClick={handleClickShowPassword}
+                            sx={{
+                                color: '#fff',
+                                '&:hover': {
+                                    color: '#6e6b6b',
+                                    cursor: 'pointer',
+                                },
+                            }}
+                        />
+                    ) : (
+                        <Visibility
+                            onClick={handleClickShowPassword}
+                            sx={{
+                                color: '#fff',
+                                '&:hover': {
+                                    color: '#6e6b6b',
+                                    cursor: 'pointer',
+                                },
+                            }}
+                        />
+                    )
                 }
                 placeholder="Password"
-                type="password"
+                type={type}
             />
             <Button
                 sx={{ color: '#fff', background: '#000' }}

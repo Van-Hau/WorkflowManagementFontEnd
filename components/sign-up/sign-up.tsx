@@ -13,6 +13,7 @@ import {
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { authApi } from '@/api/auth-api';
+import { useRouter } from 'next/router';
 export interface ISignUpComponentProps {
     setSignUp2: any;
     setToast: any;
@@ -33,10 +34,14 @@ export default function SignUpComponent({
     const [positionWork, setPositionWork] = useState('');
     const [district, setDistrict] = useState('');
     const [scaleWork, setScaleWork] = useState('');
-
+    const [frontendUrl, setUrl] = useState('');
+    const router = useRouter();
     const handleSingin2 = () => {
         setSignUp2('');
     };
+    useEffect(() => {
+        setUrl(window.location.origin);
+    }, []);
 
     const handleRegister = async () => {
         if (email === '') {
@@ -105,13 +110,15 @@ export default function SignUpComponent({
             positionWork: positionWork,
             scaleWork: parseInt(scaleWork),
             fullName: name,
+            frontendUrl: frontendUrl,
         };
         try {
             const { data } = await authApi.signUp(payload);
             console.log(data);
             if (data && data?.token) {
                 setToast({ open: true, message: 'Đăng ký thành công', severity: 'success' });
-                setSingUp('');
+                // setSingUp('');
+                router.push('/verify');
             } else {
                 setToast({ open: true, message: data?.errors?.errorMessage, severity: 'error' });
             }
