@@ -18,7 +18,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     if (req.method !== 'POST') {
         return res.status(404).json({ message: 'Not Support!' });
     }
-
     return new Promise((resolve) => {
         //dont send cookie
         req.headers.cookie = '';
@@ -28,13 +27,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
             proxyRes.on('data', function (chunk) {
                 body += chunk;
-            }); 
+            });
 
             proxyRes.on('end', function () {
                 try {
                     const { token, expiredAt } = JSON.parse(body);
+                    if (token == null || expiredAt == null) {
+                        (res as NextApiResponse).status(500).json({ message: 'Login false!' });
+                        return;
+                    }
 
-                    const cookies = new Cookies(req, res, {secure: process.env.NODE_ENV != 'development'});
+                    const cookies = new Cookies(req, res, {
+                        secure: process.env.NODE_ENV != 'development',
+                    });
                     cookies.set('token', token, {
                         httpOnly: true,
                         sameSite: 'lax',
@@ -42,15 +47,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
                     });
 
                     (res as NextApiResponse).status(200).json({ message: 'Login successfull!' });
-
                 } catch (error) {
                     (res as NextApiResponse).status(500).json({ message: 'Login false!' });
                 }
 
                 resolve(true);
             });
-
-            
         };
 
         proxy.once('proxyRes', handleProxyReqponse);
