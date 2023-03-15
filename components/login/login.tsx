@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 import { authApi } from '@/api/auth-api';
+import { useRouter } from 'next/router';
 
 export interface ILoginComponentProps {
     setSignUp2: any;
@@ -20,6 +21,7 @@ export interface ILoginComponentProps {
 
 export default function LoginComponent({ setSignUp2, setToast }: ILoginComponentProps) {
     const [nameSignIn, setNameSignIn] = useState('');
+    const router = useRouter();
 
     const [passwordSignIn, setPasswordSignIn] = useState('');
 
@@ -50,6 +52,7 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
         try {
             const { data } = await authApi.login(payload);
             setToast({ open: true, message: data.message, severity: 'success' });
+            router.push('/home');
         } catch (error: any) {
             setToast({ open: true, message: 'login faill !', severity: 'error' });
         }

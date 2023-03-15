@@ -202,7 +202,7 @@ const Home: NextPageWithLayout = () => {
                                 justifyContent: 'flex-start',
                                 alignItems: 'center',
                                 padding: '0 100px',
-                                maxWidth: '60%',
+                                minWidth: '100%',
 
                                 flexDirection: 'row',
                                 minHeight: '100%',
@@ -213,8 +213,9 @@ const Home: NextPageWithLayout = () => {
                                     left: '0',
                                     width: '100%',
                                     height: '100%',
-                                    backdropFilter: 'blur(8px)',
+                                    backdropFilter: 'blur(3px)',
                                     boxShadow: '10px 0 15px rgba(0,0,0,0.05)',
+                                    // opacity: '0.1',
                                 },
                             },
                             isMobile
@@ -239,6 +240,7 @@ const Home: NextPageWithLayout = () => {
                                     color: '#fff',
                                     textTransform: 'uppercase',
                                     fontWeight: 'bold',
+                                    width: '60%',
                                 }}
                             >
                                 Nền tảng quản trị doanh nghiệp toàn diện
@@ -397,7 +399,7 @@ const Home: NextPageWithLayout = () => {
 
                 <ListReason />
                 <SwiperMulti />
-                <Stack>
+                {/* <Stack>
                     <Typography
                         variant="h2"
                         sx={{
@@ -449,7 +451,7 @@ const Home: NextPageWithLayout = () => {
                             />
                         );
                     })}
-                </Stack>
+                </Stack> */}
                 <Footer />
             </Stack>
         </StylesProvider>
