@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 import { authApi } from '@/api/auth-api';
+import { useRouter } from 'next/router';
 
 export interface ILoginComponentProps {
     setSignUp2: any;
@@ -20,12 +21,17 @@ export interface ILoginComponentProps {
 
 export default function LoginComponent({ setSignUp2, setToast }: ILoginComponentProps) {
     const [nameSignIn, setNameSignIn] = useState('');
+    const router = useRouter();
 
     const [passwordSignIn, setPasswordSignIn] = useState('');
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const [type, setType] = useState('password');
+    const handleClickShowPassword = () => {
+        setShowPassword((show) => !show);
+        setType(showPassword ? 'password' : 'text');
+    };
 
     const handleSingUp2 = () => {
         setSignUp2('sign-up-mode2');
@@ -46,6 +52,7 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
         try {
             const { data } = await authApi.login(payload);
             setToast({ open: true, message: data.message, severity: 'success' });
+            router.push('/home');
         } catch (error: any) {
             setToast({ open: true, message: 'login faill !', severity: 'error' });
         }
@@ -57,35 +64,39 @@ export default function LoginComponent({ setSignUp2, setToast }: ILoginComponent
             <OutlinedInput
                 onChange={(e: any) => setNameSignIn(e.target.value)}
                 value={nameSignIn}
-                endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton edge="end">
-                            <PersonIcon sx={{ color: '#fff' }} />
-                        </IconButton>
-                    </InputAdornment>
-                }
+                endAdornment={<PersonIcon sx={{ color: '#fff' }} />}
                 placeholder="Email"
             />
             <OutlinedInput
                 onChange={(e: any) => setPasswordSignIn(e.target.value)}
                 value={passwordSignIn}
                 endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                            aria-label="toggle password visibility"
+                    showPassword ? (
+                        <VisibilityOff
                             onClick={handleClickShowPassword}
-                            edge="end"
-                        >
-                            {showPassword ? (
-                                <VisibilityOff sx={{ color: '#fff' }} />
-                            ) : (
-                                <Visibility sx={{ color: '#fff' }} />
-                            )}
-                        </IconButton>
-                    </InputAdornment>
+                            sx={{
+                                color: '#fff',
+                                '&:hover': {
+                                    color: '#6e6b6b',
+                                    cursor: 'pointer',
+                                },
+                            }}
+                        />
+                    ) : (
+                        <Visibility
+                            onClick={handleClickShowPassword}
+                            sx={{
+                                color: '#fff',
+                                '&:hover': {
+                                    color: '#6e6b6b',
+                                    cursor: 'pointer',
+                                },
+                            }}
+                        />
+                    )
                 }
                 placeholder="Password"
-                type="password"
+                type={type}
             />
             <Button
                 sx={{ color: '#fff', background: '#000' }}

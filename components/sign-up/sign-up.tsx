@@ -13,6 +13,7 @@ import {
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { authApi } from '@/api/auth-api';
+import { useRouter } from 'next/router';
 export interface ISignUpComponentProps {
     setSignUp2: any;
     setToast: any;
@@ -33,10 +34,14 @@ export default function SignUpComponent({
     const [positionWork, setPositionWork] = useState('');
     const [district, setDistrict] = useState('');
     const [scaleWork, setScaleWork] = useState('');
-
+    const [frontendUrl, setUrl] = useState('');
+    const router = useRouter();
     const handleSingin2 = () => {
         setSignUp2('');
     };
+    useEffect(() => {
+        setUrl(window.location.origin);
+    }, []);
 
     const handleRegister = async () => {
         if (email === '') {
@@ -105,13 +110,15 @@ export default function SignUpComponent({
             positionWork: positionWork,
             scaleWork: parseInt(scaleWork),
             fullName: name,
+            frontendUrl: frontendUrl,
         };
         try {
             const { data } = await authApi.signUp(payload);
             console.log(data);
             if (data && data?.token) {
                 setToast({ open: true, message: 'Đăng ký thành công', severity: 'success' });
-                setSingUp('');
+                // setSingUp('');
+                router.push('/verify');
             } else {
                 setToast({ open: true, message: data?.errors?.errorMessage, severity: 'error' });
             }
@@ -129,9 +136,10 @@ export default function SignUpComponent({
     return (
         <Box component="form">
             <Typography variant="h2">Đăng Ký</Typography>
-            <Stack flexDirection="row" gap="10px">
+            <Stack flexDirection="row" gap="10px" width="100%">
                 <OutlinedInput
                     placeholder="Email"
+                    sx={{ flexGrow: '1' }}
                     onChange={(e: any) => setEmail(e.target.value)}
                     value={email}
                 />
@@ -139,32 +147,37 @@ export default function SignUpComponent({
                     placeholder="Họ và tên"
                     onChange={(e: any) => setName(e.target.value)}
                     value={name}
+                    sx={{ flexGrow: '1' }}
                 />
             </Stack>
-            <Stack flexDirection="row" gap="10px">
+            <Stack flexDirection="row" gap="10px" width="100%">
                 <OutlinedInput
                     placeholder="Số điện thoại"
                     onChange={(e: any) => setPhone(e.target.value)}
                     value={phone}
+                    sx={{ flexGrow: '1' }}
                 />
                 <OutlinedInput
                     placeholder="Tên Công Ty"
                     onChange={(e: any) => setCompany(e.target.value)}
                     value={company}
+                    sx={{ flexGrow: '1' }}
                 />
             </Stack>
-            <Stack flexDirection="row" gap="10px">
+            <Stack flexDirection="row" gap="10px" width="100%">
                 <OutlinedInput
                     placeholder="Mật khẩu"
                     onChange={(e: any) => setPassword(e.target.value)}
                     value={password}
                     type="password"
+                    sx={{ flexGrow: '1' }}
                 />
                 <OutlinedInput
                     placeholder="Nhập lại mật khẩu"
                     onChange={(e: any) => setComfirmPassword(e.target.value)}
                     value={comfirmPassword}
                     type="password"
+                    sx={{ flexGrow: '1' }}
                 />
             </Stack>
             <FormControl required fullWidth sx={{ marginBottom: '30px' }}>

@@ -18,7 +18,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     if (req.method !== 'POST') {
         return res.status(404).json({ message: 'Not Support!' });
     }
-
     return new Promise((resolve) => {
         //dont send cookie
         req.headers.cookie = '';
